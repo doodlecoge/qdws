@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true" xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="fileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="true"/>
+        <param name="file" value="qd-ws.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="hchFileAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="true"/>
+        <param name="file" value="hch_qd_ws.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <appender name="traceAppender" class="org.apache.log4j.RollingFileAppender">
+        <param name="append" value="true"/>
+        <param name="file" value="qd-ws-trace.log"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{dd/MM/yyyy HH:mm:ss} %5p %c{1} - %m%n"/>
+        </layout>
+    </appender>
+
+    <logger name="bug.trace" additivity="false">
+        <level value="TRACE"/>
+        <appender-ref ref="traceAppender"/>
+    </logger>
+
+    <logger name="com.cisex" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="fileAppender"/>
+    </logger>
+
+    <logger name="hch.log" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="hchFileAppender"/>
+    </logger>
+
+    <root>
+        <level value="WARN"/>
+        <appender-ref ref="fileAppender"/>
+    </root>
+
+</log4j:configuration>

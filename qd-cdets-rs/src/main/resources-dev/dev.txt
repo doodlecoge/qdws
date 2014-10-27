@@ -1,0 +1,14 @@
+ SELECT a.project,a.product
+ FROM
+   (
+       SELECT project,product
+       FROM products
+       WHERE last_health_check_time is null or last_health_check_time < '2014-03-05'
+   ) b 
+ LEFT JOIN
+ (
+       SELECT project,product,COUNT(*) cnt 
+       FROM defects 
+       GROUP BY project,product
+ ) a 
+ ON a.project = b.project AND a.product = b.product;
